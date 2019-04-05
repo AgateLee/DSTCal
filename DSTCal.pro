@@ -31,7 +31,6 @@ SOURCES += \
 
 HEADERS += \
         mainwindow.h \
-    dbinit.h \
     dbutil.h
 
 FORMS += \
