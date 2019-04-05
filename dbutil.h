@@ -11,10 +11,10 @@ class DBUtil
 {
 private:
     QSqlDatabase db;
-    QString queryUserSQL = "SELECT name, password FROM user WHERE name = :name'";
-    QString inseryUserSQL = "INSERT INTO user(name, password) VALUES (:name, :password)'";
-    QString queryRefSQL = "SELECT config FROM refdata WHERE name = :name'";
-    QString showSQL = "SELECT * FROM :tablename";
+    QString queryUserSQL = "SELECT name, password FROM user WHERE name = :name";
+    QString inseryUserSQL = "INSERT INTO user(name, password) VALUES (:name, :password)";
+    QString queryRefSQL = "SELECT config FROM refdata WHERE name = :name";
+    QString showSQL = "SELECT * FROM user";
     QString queryConfig = "SELECT config FROM :tablename WHERE name = :name";
 
 public:
@@ -35,18 +35,25 @@ public:
 
     bool initTable() {
         QSqlQuery query;
-        bool result = query.exec("DROP TABLE dst.user")
-                && query.exec("DROP TABLE dst.refdata")
+        bool result = query.exec("DROP TABLE IF EXISTS user");
+        if(!result)qDebug() << query.lastError();
+        result = result
+                && query.exec("DROP TABLE IF EXISTS refdata");
+        if(!result)qDebug() << query.lastError();
+        result = result
                 && query.exec("CREATE TABLE user ("
                                  "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                                  "name VARCHAR,"
                                  "password VARCHAR,"
-                                 "UNIQUE(name))")
+                                 "UNIQUE(name))");
+        if(!result)qDebug() << query.lastError();
+        result = result
                 && query.exec("CREATE TABLE refdata("
                               "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                               "name VARCHAR,"
                               "config VARCHAR,"
                               "UNIQUE(name))");
+        if(!result)qDebug() << query.lastError();
 
         if (!result) {
             QMessageBox::critical(0, QObject::tr("Init Database Error: "),
@@ -75,7 +82,7 @@ public:
                 }
             }
         }
-
+        qDebug() << query.lastError();
         return false;
     }
 
@@ -88,7 +95,7 @@ public:
         if (query.exec()) {
             return true;
         }
-
+        qDebug() << query.lastError();
         return false;
     }
 
@@ -96,10 +103,14 @@ public:
         QSqlQuery query;
 
         query.prepare(showSQL);
-        query.bindValue(":tablename", tablename);
         if (query.exec()) {
-            query.next();
-            qDebug() << query.value(0).toString().append(": ").append(query.value(1).toString());
+            while(query.next()) {
+                qDebug() << query.value(0).toString().append(": ")
+                            .append(query.value(1).toString()).append(": ")
+                            .append(query.value(2).toString());
+            }
+        } else {
+            qDebug() << query.lastError();
         }
     }
 
@@ -113,7 +124,7 @@ public:
             query.next();
             return query.value(0).toString();
         }
-
+        qDebug() << query.lastError();
         return nullptr;
     }
 };

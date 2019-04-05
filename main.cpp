@@ -10,9 +10,10 @@ int main(int argc, char *argv[]) {
     DBUtil dbutil = DBUtil();
 
     if(dbutil.connectDB()) {
-        dbutil.registerUser("liyi", "123");
-        dbutil.registerUser("yls", "234");
-        dbutil.showTable("user");
+//        dbutil.initTable();
+//        printf("%d", dbutil.checkUser("liyi", "123"));
+//        printf("%d", dbutil.checkUser("yls", "234"));
+//        dbutil.showTable("user");
     }
 
     return a.exec();
