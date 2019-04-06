@@ -28,13 +28,15 @@ SOURCES += \
         main.cpp \
     dbutil.cpp \
     button.cpp \
-    calculator.cpp
+    calculator.cpp \
+    loginwidget.cpp
 
 HEADERS += \
     dbutil.h \
     initdata.h \
     button.h \
-    calculator.h
+    calculator.h \
+    loginwidget.h
 
 FORMS +=
 
