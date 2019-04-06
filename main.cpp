@@ -1,6 +1,7 @@
 #include <QApplication>
 #include "dbutil.h"
-#include "calculator.h"
+#include "mainwindow.h"
+#include "logindialog.h"
 
 void initDB(DBUtil dbutil) {
     dbutil.initTable();
@@ -12,10 +13,15 @@ int main(int argc, char *argv[]) {
     DBUtil dbutil = DBUtil();
     dbutil.connectDB();
 
-    Calculator calc;
-    calc.show();
+    LoginDialog lg;
+    MainWindow w;
 
-    return a.exec();
+    if(lg.exec() == QDialog::Accepted)
+    {
+        w.show();
+        return a.exec();
+    }
+    else return 0;
 }
 
 
