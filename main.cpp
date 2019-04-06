@@ -1,6 +1,6 @@
 #include <QApplication>
 #include "dbutil.h"
-#include "mainwindow.h"
+#include "firstwidget.h"
 #include "logindialog.h"
 
 bool login;
@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
     dbutil.connectDB();
 
     LoginDialog lg;
-    MainWindow w;
+    Firstwidget w;
 
     if(lg.exec() == QDialog::Accepted)
     {

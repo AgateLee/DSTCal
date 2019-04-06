@@ -94,7 +94,7 @@ int main()
 	DIR* dir = opendir("./database");
 	dirent* p = NULL;
 	ofstream fou("./data.txt");
-	fou << "{" << endl;
+        fou << "{";
 	
 	bool first = true;
 	while((p = readdir(dir)) != NULL)
@@ -110,9 +110,9 @@ int main()
 				fou << ",";
 			}
 			
-			fou << json << endl;
+                        fou << json;;
 		}  
 	}  
-	fou << "}" << endl;
+        fou << "}";
 	closedir(dir);
 }
