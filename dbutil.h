@@ -168,7 +168,7 @@ public:
         if (query.exec()) {
             query.next();
             QString data = query.value(0).toString();
-            QByteArray buf = configs.toUtf8();
+            QByteArray buf = data.toUtf8();
             QJsonDocument jd = QJsonDocument::fromJson(buf);
             if(jd.isObject())
             {
