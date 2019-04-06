@@ -18,7 +18,7 @@ Firstwidget::~Firstwidget()
 
 void Firstwidget::on_pushButton_8_clicked()
 {
-    Fy * fy = new Fy();
-    ui->verticalLayout_3->replaceWidget(widget, fy);
-    widget = fy;
+    ui->verticalLayout_3->removeWidget(widget);
+    widget = new Fy();
+    ui->verticalLayout_3->addWidget(widget);
 }
