@@ -2,6 +2,7 @@
 #define FIRSTWIDGET_H
 
 #include <QWidget>
+#include "fy.h"
 
 namespace Ui {
 class Firstwidget;
@@ -15,8 +16,12 @@ public:
     explicit Firstwidget(QWidget *parent = nullptr);
     ~Firstwidget();
 
+private slots:
+    void on_pushButton_8_clicked();
+
 private:
     Ui::Firstwidget *ui;
+    QWidget * widget;
 };
 
 #endif // FIRSTWIDGET_H
