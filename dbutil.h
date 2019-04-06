@@ -99,6 +99,10 @@ public:
     }
 
     bool checkUser(QString username, QString pwd) {
+        if (username.isEmpty() || pwd.isEmpty()) {
+            return false;
+        }
+
         QSqlQuery query;
 
         query.prepare(queryUserSQL);
@@ -116,8 +120,11 @@ public:
     }
 
     bool registerUser(QString username, QString pwd) {
-        QSqlQuery query;
+        if (username.isEmpty() || pwd.isEmpty()) {
+            return false;
+        }
 
+        QSqlQuery query;
         query.prepare(inseryUserSQL);
         query.bindValue(":name", username);
         query.bindValue(":password", MD5(pwd));
