@@ -48,7 +48,7 @@ void LoginDialog::on_pushButton_resetUser_clicked()
     }
 }
 
-void LoginDialog::on_pushButton_resetRef_clicked()
+void LoginDialog::on_pushButton_resetConfig_clicked()
 {
     DBUtil dbutil = DBUtil();
     if (dbutil.initConfig()) {
@@ -57,3 +57,5 @@ void LoginDialog::on_pushButton_resetRef_clicked()
         QMessageBox::critical(0, QObject::tr("InitConfig Fail"),"重置失败");
     }
 }
+
+
