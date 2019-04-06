@@ -37,3 +37,23 @@ void LoginDialog::on_pushButton_register_clicked()
         QMessageBox::critical(0, QObject::tr("Register Fail"),"注册失败");
     }
 }
+
+void LoginDialog::on_pushButton_resetUser_clicked()
+{
+    DBUtil dbutil = DBUtil();
+    if (dbutil.initUser()) {
+        QMessageBox::critical(0, QObject::tr("InitUser Success"),"重置成功");
+    } else {
+        QMessageBox::critical(0, QObject::tr("InitUser Fail"),"重置失败");
+    }
+}
+
+void LoginDialog::on_pushButton_resetRef_clicked()
+{
+    DBUtil dbutil = DBUtil();
+    if (dbutil.initConfig()) {
+        QMessageBox::critical(0, QObject::tr("InitConfig Success"),"重置成功");
+    } else {
+        QMessageBox::critical(0, QObject::tr("InitConfig Fail"),"重置失败");
+    }
+}

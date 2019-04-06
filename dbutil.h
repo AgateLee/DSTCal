@@ -34,19 +34,9 @@ public:
         return true;
     }
 
-    bool initTable() {
+    bool initConfig() {
         QSqlQuery query;
-        bool result = query.exec("DROP TABLE IF EXISTS user");
-        if(!result)qDebug() << query.lastError();
-        result = result
-                && query.exec("DROP TABLE IF EXISTS refdata");
-        if(!result)qDebug() << query.lastError();
-        result = result
-                && query.exec("CREATE TABLE user ("
-                                 "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                                 "name VARCHAR,"
-                                 "password VARCHAR,"
-                                 "UNIQUE(name))");
+        bool result = query.exec("DROP TABLE IF EXISTS refdata");
         if(!result)qDebug() << query.lastError();
         result = result
                 && query.exec("CREATE TABLE refdata("
@@ -84,6 +74,26 @@ public:
                 }
             }
         }
+        if (!result) {
+            QMessageBox::critical(0, QObject::tr("Init Database Error: "),
+                                              query.lastError().text());
+            return false;
+        }
+        return true;
+    }
+
+    bool initUser() {
+        QSqlQuery query;
+        bool result = query.exec("DROP TABLE IF EXISTS user");
+        if(!result)qDebug() << query.lastError();
+        result = result
+                && query.exec("CREATE TABLE user ("
+                                 "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                                 "name VARCHAR,"
+                                 "password VARCHAR,"
+                                 "UNIQUE(name))");
+        if(!result)qDebug() << query.lastError();
+
         if (!result) {
             QMessageBox::critical(0, QObject::tr("Init Database Error: "),
                                               query.lastError().text());

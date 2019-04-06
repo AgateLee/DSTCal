@@ -5,10 +5,6 @@
 
 bool login;
 
-void initDB(DBUtil dbutil) {
-    dbutil.initTable();
-}
-
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
 
