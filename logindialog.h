@@ -20,6 +20,12 @@ private slots:
 
     void on_pushButton_register_clicked();
 
+    void on_pushButton_resetUser_clicked();
+
+    void on_pushButton_resetConfig_clicked();
+
+    void on_pushButton_query_clicked();
+
 private:
     Ui::LoginDialog *ui;
 };

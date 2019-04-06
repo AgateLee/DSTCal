@@ -160,15 +160,22 @@ public:
         }
     }
 
-    QString queryValue(QString tablename, QString name) {
+    QString queryValue(QString name, QString key) {
         QSqlQuery query;
 
-        query.prepare(queryConfig);
-        query.bindValue(":tablename", tablename);
+        query.prepare(queryRefSQL);
         query.bindValue(":name", name);
         if (query.exec()) {
             query.next();
-            return query.value(0).toString();
+            QString data = query.value(0).toString();
+            QByteArray buf = configs.toUtf8();
+            QJsonDocument jd = QJsonDocument::fromJson(buf);
+            if(jd.isObject())
+            {
+                QJsonObject jo = jd.object();
+                QVariantMap map = jo.toVariantMap();
+                return map.value(key).toString();
+            }
         }
         qDebug() << query.lastError();
         return nullptr;

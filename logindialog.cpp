@@ -58,4 +58,13 @@ void LoginDialog::on_pushButton_resetConfig_clicked()
     }
 }
 
+void LoginDialog::on_pushButton_query_clicked()
+{
+    QString func = ui->lineEdit_func->text();
+    QString row = ui->lineEdit_row->text();
+    QString col = ui->lineEdit_col->text();
 
+    DBUtil dbutil = DBUtil();
+    QString value = dbutil.queryValue(func, row + "_" + col);
+    ui->lineEdit_result->text() = value;
+}
