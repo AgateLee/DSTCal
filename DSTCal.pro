@@ -30,7 +30,9 @@ SOURCES += \
     button.cpp \
     calculator.cpp \
     mainwindow.cpp \
-    logindialog.cpp
+    logindialog.cpp \
+    firstwidget.cpp \
+    fy.cpp
 
 HEADERS += \
     dbutil.h \
@@ -38,11 +40,15 @@ HEADERS += \
     button.h \
     calculator.h \
     mainwindow.h \
-    logindialog.h
+    logindialog.h \
+    firstwidget.h \
+    fy.h
 
 FORMS += \
     mainwindow.ui \
-    logindialog.ui
+    logindialog.ui \
+    firstwidget.ui \
+    fy.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
