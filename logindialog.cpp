@@ -66,5 +66,5 @@ void LoginDialog::on_pushButton_query_clicked()
 
     DBUtil dbutil = DBUtil();
     QString value = dbutil.queryValue(func, row + "_" + col);
-    ui->lineEdit_result->text() = value;
+    ui->lineEdit_result->setText(value);
 }

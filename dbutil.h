@@ -174,7 +174,9 @@ public:
             {
                 QJsonObject jo = jd.object();
                 QVariantMap map = jo.toVariantMap();
-                return map.value(key).toString();
+                QString result = map.value(key).toString();
+                qDebug() << result;
+                return result;
             }
         }
         qDebug() << query.lastError();
