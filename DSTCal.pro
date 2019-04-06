@@ -26,16 +26,17 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp \
-    dbutil.cpp
+    dbutil.cpp \
+    button.cpp \
+    calculator.cpp
 
 HEADERS += \
-        mainwindow.h \
     dbutil.h \
-    initdata.h
+    initdata.h \
+    button.h \
+    calculator.h
 
-FORMS += \
-        mainwindow.ui
+FORMS +=
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

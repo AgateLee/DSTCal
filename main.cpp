@@ -1,6 +1,6 @@
-#include "mainwindow.h"
 #include <QApplication>
 #include "dbutil.h"
+#include "calculator.h"
 
 void initDB(DBUtil dbutil) {
     dbutil.initTable();
@@ -8,12 +8,12 @@ void initDB(DBUtil dbutil) {
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
-    MainWindow w;
 
     DBUtil dbutil = DBUtil();
     dbutil.connectDB();
 
-    w.show();
+    Calculator calc;
+    calc.show();
 
     return a.exec();
 }
