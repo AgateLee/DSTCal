@@ -31,7 +31,8 @@ SOURCES += \
 
 HEADERS += \
         mainwindow.h \
-    dbutil.h
+    dbutil.h \
+    initdata.h
 
 FORMS += \
         mainwindow.ui
